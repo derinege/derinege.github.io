@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beyond “Write Me SQL”: An Evidence-Driven AI Workflow for Data Warehousing — Derin Ege Evren</title>
+  <meta name="description" content="A sixteen-page field guide on building an evidence-driven AI workflow for data warehousing: context, responsibility and evidence, with a real development case and a starter workflow.">
+  <meta name="author" content="Derin Ege Evren">
+  <meta name="theme-color" content="#0e7c72">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Beyond “Write Me SQL”: An Evidence-Driven AI Workflow for Data Warehousing">
+  <meta property="og:description" content="A sixteen-page field guide on building an evidence-driven AI workflow for data warehousing: context, responsibility and evidence, with a real development case and a starter workflow.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+</head>
+<body>
+  <div class="article-page">
+    <div class="article__top">
+      <a class="back" href="../index.html#writing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg> Derin Ege Evren</a>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+
+    <header class="article__header">
+      <p class="article__kicker"><span>Field guide</span><span class="pill">EN</span><span>September 2026</span><span>16 pages</span></p>
+      <h1 class="article__title">Beyond “Write Me SQL”: An Evidence-Driven AI Workflow for Data Warehousing</h1>
+      <p class="article__deck">Real development lessons. Clear agent responsibilities. Safer context sharing. Tests with an honest boundary.</p>
+      <div class="article__byline"><span>By <strong>Derin Ege Evren</strong></span><span class="sep">·</span><span>AI &amp; Machine Learning Engineer</span><span class="sep">·</span><span>About 17 min read</span></div>
+    </header>
+
+    <article class="article">
+<div class="report-hero">
+  <div>
+    <p>A sixteen-page field guide for data practitioners moving from isolated prompts to a repeatable way of working with AI. Its starting point is that a successful run is not the same as a verified result. From there it builds a workflow around three questions: <strong>what must be true</strong> (context), <strong>who owns the change</strong> (responsibility) and <strong>what did we actually prove</strong> (evidence), with a real development case, a security section on sharing structure rather than sensitive data, and a starter workflow for a junior data engineer.</p>
+    <p class="note">Companion piece to <a href="astra-vs-fable-beyond-the-benchmark.html">GPT-6 Astra vs Claude Fable 5: Beyond the Benchmark</a>. Examples are anonymized.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="../assets/beyond-write-me-sql.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg> Open the PDF</a>
+      <a class="btn btn--ghost" href="../assets/beyond-write-me-sql.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> Download (150 KB)</a>
+    </div>
+  </div>
+  <aside class="report-card" aria-label="Document facts">
+    <dl>
+      <dt>Format</dt><dd>Field guide, PDF</dd>
+      <dt>Length</dt><dd>16 pages, 14 sections</dd>
+      <dt>Language</dt><dd>English</dd>
+      <dt>Date</dt><dd>September 2026</dd>
+      <dt>Examples</dt><dd>Anonymized, from real DWH work</dd>
+    </dl>
+  </aside>
+</div>
+
+<h2 id="inside">What is inside</h2>
+<div class="toc"><ol><li><span><span class="num">01</span>The Turning Point</span><ol><li>A successful run is not the same as a correct result.</li></ol></li><li><span><span class="num">02</span>Better Inputs</span><ol><li>Give AI a contract, not just a request.</li></ol></li><li><span><span class="num">03</span>Persistent Memory</span><ol><li>The conversation is not the system of record.</li></ol></li><li><span><span class="num">04</span>Model And Tool Breakdown</span><ol><li>Assign responsibilities before choosing tools.</li></ol></li><li><span><span class="num">05</span>Orchestration</span><ol><li>Shared context. Clear ownership.</li></ol></li><li><span><span class="num">06</span>Security</span><ol><li>Share the structure, not the sensitive rows.</li></ol></li><li><span><span class="num">07</span>A Real Development Case</span><ol><li>Test the procedures, not just the draft.</li></ol></li><li><span><span class="num">08</span>Evidence, Not A Victory Lap</span><ol><li>23 checks passed. Here is what that means.</li></ol></li><li><span><span class="num">09</span>What The Structure Adds</span><ol><li>The payoff goes beyond writing SQL.</li></ol></li><li><span><span class="num">10</span>Experience And Speed</span><ol><li>Can AI help a junior catch up?</li></ol></li><li><span><span class="num">11</span>Costs And Trade-Offs</span><ol><li>Useful structure is not free structure.</li></ol></li><li><span><span class="num">12</span>Lessons From Friction</span><ol><li>More agents and more code are not always better.</li></ol></li><li><span><span class="num">13</span>Start Small</span><ol><li>A starter workflow for a junior data engineer.</li></ol></li><li><span><span class="num">14</span>Closing Notes</span><ol><li>The real improvement was a better verification process.</li></ol></li></ol></div>
+
+<h2 id="read">Read it here</h2>
+<div class="pdf-embed">
+  <object data="../assets/beyond-write-me-sql.pdf#view=FitH" type="application/pdf" aria-label="Beyond Write Me SQL, PDF">
+    <div class="pdf-embed__fallback"><p>Your browser cannot display the PDF inline. <a href="../assets/beyond-write-me-sql.pdf" target="_blank" rel="noopener">Open it in a new tab</a> or <a href="../assets/beyond-write-me-sql.pdf" download>download it</a>.</p></div>
+  </object>
+</div>
+
+    </article>
+
+    <footer class="article__footer">
+      <p>A personal field guide, not an employer statement. <a href="../index.html#writing">Back to all writing</a>.</p>
+    </footer>
+  </div>
+  <script src="../js/theme.js"></script>
+</body>
+</html>

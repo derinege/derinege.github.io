@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPT-6 Astra vs Claude Fable 5: Beyond the Benchmark — Derin Ege Evren</title>
+  <meta name="description" content="What actually helped, what broke, and what I learned from a multi-agent data-warehouse workflow with GPT-6 Astra (Codex) and Claude Fable 5.">
+  <meta name="author" content="Derin Ege Evren">
+  <meta name="theme-color" content="#0e7c72">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="GPT-6 Astra vs Claude Fable 5: Beyond the Benchmark">
+  <meta property="og:description" content="What actually helped, what broke, and what I learned from a multi-agent data-warehouse workflow with GPT-6 Astra (Codex) and Claude Fable 5.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+</head>
+<body>
+  <div class="article-page">
+    <div class="article__top">
+      <a class="back" href="../index.html#writing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg> Derin Ege Evren</a>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+
+    <header class="article__header">
+      <p class="article__kicker"><span>Field report</span><span class="pill">EN</span><span>September 2026</span></p>
+      <h1 class="article__title">GPT-6 Astra vs Claude Fable 5: Beyond the Benchmark</h1>
+      <p class="article__deck">What actually helped, what broke, and what I learned from a multi-agent DWH workflow.</p>
+      <div class="article__byline"><span>By <strong>Derin Ege Evren</strong></span><span class="sep">·</span><span>AI &amp; Machine Learning Engineer</span><span class="sep">·</span><span>14 min read</span><span class="sep">·</span><a href="../assets/astra-vs-fable-beyond-the-benchmark.pdf">PDF version</a></div>
+    </header>
+
+    <article class="article">
+<h2 id="i-did-not-need-another-confident-answer.">I did not need another confident answer.</h2>
+<p>I needed a change I could understand, transfer, test and trust.</p>
+<p>There is a particular kind of frustration in AI-assisted development: the assistant says the fix is ready, you move the script into your work environment, and another revision arrives. The code may be improving. Your day is still disappearing into copy, paste, execute and report back.</p>
+<p>That happened during my data warehouse work. It changed what I wanted to compare. Not which model could generate the most impressive SQL, but which working arrangement helped me reach a verified result with less unnecessary work.</p>
+<p>My background is AI and machine learning engineering, and I approach warehouse development as both a data problem and a systems problem. This article follows my experience using the setups I identify as GPT-6 Astra in Codex and Claude Fable 5. It is a companion to my first article on effective AI use in DWH, not a laboratory benchmark.</p>
+<blockquote>
+<p class="callout__title"><strong>An important attribution limit</strong></p>
+<p>The historical records identify the agents as Codex and Claude, not the model behind every turn. Astra and Fable 5 are my reported model labels. This retrospective cannot independently verify that each historical turn used those exact versions. Here, agent-level observations are not universal model-level conclusions.</p>
+</blockquote>
+<p>The records cover selected development and review episodes, mainly from late August and early September 2026. Both agents saw previous decisions and each other’s work. Their assignments changed. That makes this a collaboration case study, not two isolated contestants solving an identical fresh task.</p>
+<p>Official sources identify GPT-6 Astra and Claude Fable 5 as model names [1, 2]. They do not verify the identity, settings or performance of my historical sessions. I make no claim here about Fable 5.1 or any other replacement model.</p>
+<h2 id="two-agents.-one-human-owned-workflow.">Two agents. One human-owned workflow.</h2>
+<p>The orchestration was mostly files, clear responsibilities and a shared channel.</p>
+<p>The agents exchanged requests and reviews through a shared local text channel. Task notes preserved the current state, decisions and test evidence. A script fingerprint, or hash, identified an exact file version. None of that made the system an autonomous database operator.</p>
+<div class="role-grid"><div class="role-card"><strong>IMPLEMENTER:</strong> Produces the scoped change and names the exact revision.</div><div class="role-card"><strong>REVIEWER:</strong> Challenges assumptions and checks that same revision.</div><div class="role-card"><strong>HUMAN OWNER:</strong> Controls scope, transfers scripts and runs corporate tests.</div></div>
+<p class="figcap">Figure 1. Responsibilities, not permanent model personalities. Implementation ownership changed during the project.</p>
+<p>At an earlier stage, Claude owned implementation. After repeated delivery loops, I moved that responsibility to Codex and kept Claude involved in review and records. Later successes cannot be interpreted as a clean comparison: Codex inherited context, previous work and already-discovered problems. [E1]</p>
+<h3 id="what-the-framework-actually-added">What the framework actually added</h3>
+<p>It gave disagreements somewhere to live outside the chat. A reviewer could point to an exact version, a decision could state its scope, and a test could record what it did not cover. The most useful message was often not another solution. It was a precise objection to a claim that was too broad.</p>
+<blockquote>
+<p class="callout__title"><strong>What it did not add</strong></p>
+<p>A second agent was not an independent authority merely because it had a different name. Shared context could spread the same assumption. Shared files could change during review. A human still had to decide whether the evidence justified the next step.</p>
+</blockquote>
+<p>For a small, low-risk edit, this much coordination can be excessive. In this project, its value was clearest around semantic changes, difficult SQL behavior and handoffs that otherwise would have relied on memory.</p>
+<h2 id="fast-revisions-became-slow-delivery.">Fast revisions became slow delivery.</h2>
+<p>The first performance problem was not model latency. It was the work arriving at my desk.</p>
+<p>The project log records repeated Claude-led fix-and-test cycles, including at least six revisions or part refreshes around one test package. Each update required manual transfer and another attempt in the work environment. That delivery burden was the recorded reason for handing implementation to Codex. [E1]</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>A local optimization</th>
+<th>The end-to-end consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Send every small fix immediately.</td>
+<td>The human must identify, transfer and rerun another revision.</td>
+</tr>
+<tr>
+<td>Keep improving the working file.</td>
+<td>The reviewer may no longer be reading the requested version.</td>
+</tr>
+<tr>
+<td>Announce that the code is fixed.</td>
+<td>The recipient still needs to know what changed and what to test.</td>
+</tr>
+</tbody>
+</table></div>
+<p>My preference after that experience was to keep one implementation owner and ask for a consolidated delivery: one current script, a short change summary, known limits and a runnable test. A reviewer should challenge that package before it reaches me whenever practical.</p>
+<p>This is a real criticism of the Claude-led delivery in this episode. It is not proof that Fable 5 is inherently slower, or that Codex always produces fewer revisions. We did not record comparable response latency, token usage or human effort across controlled runs.</p>
+<blockquote>
+<p class="callout__title"><strong>The metric I would measure next</strong></p>
+<p>Time to an accepted change, including human transfer, execution, interpretation and rework. A model can be quick to answer while the workflow is expensive to operate.</p>
+</blockquote>
+<p>For an early-career engineer, this matters immediately. Ask for fewer, more complete handoffs. Do not become the mechanical courier between two agents that keep revising each other.</p>
+<h2 id="both-agents-agreed.-both-were-wrong.">Both agents agreed. Both were wrong.</h2>
+<p>Agreement is not the same thing as independent verification.</p>
+<p>In a review of a transactional truncate-and-reload pattern, both agents had accepted an incorrect claim about what a concurrent NOLOCK reader could observe. A later Codex correction revisited the SQL Server locking semantics and cited Microsoft documentation. Claude explicitly withdrew the earlier claim. [E2]</p>
+<h3 id="the-specific-technical-correction">The specific technical correction</h3>
+<p>TRUNCATE TABLE acquires a schema-modification lock, Sch-M. NOLOCK queries still acquire schema-stability locks, Sch-S, during compilation and execution. The latter are blocked by a concurrent Sch-M lock. For the transactional pattern under review, the relevant concern was blocking while that lock was held, not NOLOCK bypassing it to see the proposed intermediate state. [3, 4]</p>
+<div class="role-grid"><div class="role-card"><strong>INITIAL REVIEW:</strong> A plausible but shared incorrect explanation.</div><div class="role-card"><strong>EXTERNAL CHECK:</strong> SQL Server documentation challenges the assumption.</div><div class="role-card"><strong>CORRECTION:</strong> Both agents revise the accepted explanation.</div></div>
+<p class="figcap">Figure 2. The valuable step was checking an external source, not obtaining two matching answers.</p>
+<p>Codex deserves credit for the correction. It also shares responsibility for the earlier agreement. Claude deserves criticism for the initial mistake and credit for withdrawing it clearly. Presenting only one half of that story would make a misleading comparison.</p>
+<p>This did not certify the entire load as safe. Source reads, transaction boundaries, timeouts and the wider deployment still required their own assessment. Correcting one mechanism does not prove the rest of the system.</p>
+<blockquote>
+<p class="callout__title"><strong>A better reviewer prompt</strong></p>
+<p>State the assumption you are challenging, identify an authoritative source or a reproducible test, and explain exactly which earlier conclusion changes. Do not approve the whole design because one objection is resolved.</p>
+</blockquote>
+<h2 id="the-approval-pointed-to-the-wrong-version.">The approval pointed to the wrong version.</h2>
+<p>A good analysis is unusable if its approval points to an old revision.</p>
+<p>Two recorded review cycles ended with a stale Claude acknowledgement: a newer request existed, but the approval still referred to an older script version. In the second cycle, the retrospective initially described a column-count mismatch as a successful catch. Rechecking the sequence showed that different versions had been mixed. Claude withdrew that interpretation. [E3, E6]</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>What happened</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Review requested</td>
+<td>Revision A is named for review.</td>
+</tr>
+<tr>
+<td>2. Request superseded</td>
+<td>Revision B replaces A before acknowledgement.</td>
+</tr>
+<tr>
+<td>3. Stale approval</td>
+<td>The reviewer acknowledges A or mixes A with B’s content.</td>
+</tr>
+<tr>
+<td>4. Reconciliation</td>
+<td>The mismatch is challenged; approval is tied to B.</td>
+</tr>
+</tbody>
+</table></div>
+<p class="figcap">Figure 3. Simplified version sequence. A and B replace internal identifiers; this is not a latency timeline.</p>
+<p>The reviewer had not reliably bound the content it examined to the version it approved. Files also changed during active review. Claude reported that its watcher missed superseding messages; that explanation is a self-report, while the stale acknowledgements are visible in the channel.</p>
+<p>A fingerprint is useful only if it belongs to the bytes actually reviewed. Recording a hash and then reading a changing file can still create a false sense of precision. For future work, I would review a frozen snapshot and bind the response to that snapshot.</p>
+<pre class="text"><code>REVIEW REQUEST: revision B / immutable snapshot
+SCOPE: join keys only; filters unchanged
+RESPONSE: reviewed B / findings / test boundary
+If B changes: invalidate approval; request review again</code></pre>
+<p>There were two documented stale-approval cycles. We did not measure their wall-clock cost. The lesson is a version-control protocol, not a numerical score for either model.</p>
+<h2 id="a-stricter-guard-was-not-automatically-safer.">A stricter guard was not automatically safer.</h2>
+<p>Validation code can change the business contract just as ordinary SQL can.</p>
+<p>Another episode involved ambiguous source mappings. Two conflict checks stopped a full-range test, while the recorded debug result showed the other ten structural checks passing. Claude predicted the two problematic counters before the follow-up diagnostic result confirmed them. [E4]</p>
+<p>The discussion separated two issues: a lookup could have conflicting candidate values without multiplying result rows, and the legacy behavior did not necessarily treat that ambiguity as a fatal error. A deterministic selection rule and a business decision about unacceptable ambiguity are not the same thing.</p>
+<p>After the agreed decision was revised, Codex delivered a narrow change to make those two conditions diagnostic warnings while retaining the other guards. Claude reviewed the limited patch. This is a useful example of diagnosis, scoped implementation and review contributing different pieces. [E4]</p>
+<blockquote>
+<p class="callout__title"><strong>Do not copy the policy blindly</strong></p>
+<p>This case is not advice to downgrade failed checks. Whether ambiguity should stop a load depends on the approved business contract. The useful behavior was identifying the exact disputed conditions and obtaining a scoped decision instead of removing validation broadly.</p>
+</blockquote>
+<p>The original fail-fast change came from a separate session whose authorship and model identity were not established by the retained evidence. It belongs in the workflow failure column, not automatically in either model’s failure column. The observed stoppage was a test run, not a demonstrated production outage.</p>
+<h3 id="what-i-learned-to-ask">What I learned to ask</h3>
+<p>For every new guard: what invariant does it protect, which decision authorizes it, and what evidence distinguishes invalid data from an allowed legacy ambiguity? More defensive-looking code is not necessarily a more faithful implementation.</p>
+<h2 id="the-sevenfold-speedup-that-was-not-a-model-win.">The sevenfold speedup that was not a model win.</h2>
+<p>Same instrumented SQL, a repeat execution, and a tempting but unsupported headline.</p>
+<p>One diagnostic run took 262,933 ms. A later repeat of the same instrumented batch took 37,617 ms; both reported 30 final rows. The contrast was dramatic. It was also a database execution observation, not a measure of how quickly either model reasoned or wrote code. [E5]</p>
+<p class="figcap">Figure 4. Observed SQL elapsed time. Roughly 7x difference; two executions, not a controlled model benchmark or an isolated causal test.</p>
+<p>A warmed cache was a plausible explanation, supported by large reductions in repeated source-reading stages. But cache state, compilation, plan reuse and concurrent server conditions were not fully isolated. The older approximately 40-second baseline was not preserved as a verified equivalent artifact, so it could not serve as a strict A/B control.</p>
+<p>There was another overstatement to correct. Small measured gaps between timed stages did not establish the total cost of instrumentation inside those stages. Claude’s early explanation and Codex’s monitoring summary expressed more causal certainty than the evidence supported. The retrospective narrowed those claims. [E5, E6]</p>
+<blockquote>
+<p class="callout__title"><strong>The defensible conclusion</strong></p>
+<p>The same instrumented batch was capable of a much shorter repeat execution. We did not isolate why the first run was slower, measure all instrumentation overhead, or establish a model-driven speed advantage. Matching row counts alone also did not prove equal output values.</p>
+</blockquote>
+<h2 id="the-retrospective-needed-its-own-fact-check.">The retrospective needed its own fact-check.</h2>
+<p>An agent can produce a convincing story about its work and still misattribute the evidence.</p>
+<p>For this article, I asked Claude to identify its contributions, mistakes, observed Codex strengths and weaknesses, and the evidence behind each claim. I then had Codex challenge vague claims against the shared records. Two clarification rounds materially changed the account. [E6]</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Initial retrospective claim</th>
+<th>What survived clarification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current model label proves historical identity.</td>
+<td>Historical per-turn identity was not independently verified.</td>
+</tr>
+<tr>
+<td>A column mismatch was a reviewer success.</td>
+<td>Different script versions had been mixed; the success claim was withdrawn.</td>
+</tr>
+<tr>
+<td>A later acceptance validated an earlier static review.</td>
+<td>The acceptance belonged to another artifact; no shared proof chain.</td>
+</tr>
+<tr>
+<td>A guard caused a production stoppage.</td>
+<td>The recorded event stopped a full-range test; actor attribution remained unknown.</td>
+</tr>
+<tr>
+<td>A few extra turns quantify the cost.</td>
+<td>Two stale-approval cycles were visible; elapsed cost was not measured.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Claude acknowledged and corrected these claims. That made the contribution more useful, not less. Still, the corrections are evidence about this exchange, not proof that one model is uniquely honest or another uniquely reliable.</p>
+<p>Codex was also a participant in the original work and is helping draft this account. It is not a neutral external evaluator. I keep the distinction between a logged event, an agent’s own explanation and my personal takeaway visible throughout the article.</p>
+<blockquote>
+<p class="callout__title"><strong>The publishing lesson</strong></p>
+<p>Ask an agent for evidence that could disprove its own account. Keep later corrections attached to the original claim. A polished narrative should never outrank the underlying record.</p>
+</blockquote>
+<h2 id="where-each-setup-helped-me.">Where each setup helped me.</h2>
+<p>A qualitative breakdown of this project, not a leaderboard of general capabilities.</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Codex / reported Astra</th>
+<th>Claude / reported Fable 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Implementation</td>
+<td>Took ownership after handoff; delivered the scoped guard-policy patch.</td>
+<td>Earlier implementation produced repeated delivery and retest loops.</td>
+</tr>
+<tr>
+<td>Technical reasoning</td>
+<td>Corrected the shared locking explanation using documentation.</td>
+<td>Predicted the two disputed conflict counters; reviewed the limited fix.</td>
+</tr>
+<tr>
+<td>Review discipline</td>
+<td>Challenged stale approvals and later retrospective attributions.</td>
+<td>Reported detailed static checks, but issued two stale approvals.</td>
+</tr>
+<tr>
+<td>Weaknesses visible here</td>
+<td>Shared an initial technical error; overstated what repeat timing proved.</td>
+<td>Shared that error; mixed versions and evidence in its retrospective.</td>
+</tr>
+<tr>
+<td>Speed and cost</td>
+<td>No comparable model latency, token or spend measurements.</td>
+<td>No comparable model latency, token or spend measurements.</td>
+</tr>
+</tbody>
+</table></div>
+<p>My practical preference in this workflow became Codex for implementation ownership and Claude for focused second review. That is a role preference drawn from these episodes, not a claim that the roles should be permanent or that the same result will hold for another team.</p>
+<p>The benefits were specific: complementary diagnosis, challenges to assumptions, durable explanations and tests with clearer boundaries. The costs were also specific: duplicate reading, stale state, review coordination and a human caught between revisions. An extra agent earns its place only when those benefits exceed its coordination burden.</p>
+<p><em>Evidence: E1-E6. Assignments, accumulated context, tools and task phase were not controlled; causal model attribution is limited.</em></p>
+<h2 id="measure-the-workflow-you-actually-operate.">Measure the workflow you actually operate.</h2>
+<p>If I repeat this comparison, I want an accepted-change record, not a stopwatch screenshot.</p>
+<p>I would give each setup the same frozen, synthetic task package: schema, mapping, constraints, representative data and explicit acceptance tests. I would record exact model versions, settings and tool access. Rotating run order and repeating tasks would help expose one-off advantages.</p>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Record</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accepted correctness</td>
+<td>Check values, multiplicity, edge cases and scope preservation, not just execution.</td>
+</tr>
+<tr>
+<td>Human effort and handoffs</td>
+<td>Count transfer/retest actions and record active human minutes.</td>
+</tr>
+<tr>
+<td>Model and tool measurements</td>
+<td>Capture latency, retries, tokens and actual billed cost when available.</td>
+</tr>
+<tr>
+<td>Database measurements</td>
+<td>Keep SQL elapsed time, CPU, reads and plans separate from model latency.</td>
+</tr>
+<tr>
+<td>Revision-bound evidence</td>
+<td>Associate every approval and test with the exact executed artifact.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="protect-the-context-before-comparing-the-models">Protect the context before comparing the models</h3>
+<p>The agents were not directly executing against the corporate database in these episodes; I controlled execution and returned results. That limits execution authority, but it does not by itself prove data confidentiality. SQL text, screenshots, object names and error messages can still reveal sensitive information.</p>
+<p>The examples here omit internal servers, customer records, employee messages and full proprietary scripts. For a future benchmark, I would use synthetic values and generalized names, and verify organizational approval, provider settings and permitted data categories before sharing context. A local coordination file does not establish that model processing is local.</p>
+<blockquote>
+<p class="callout__title"><strong>For newer engineers</strong></p>
+<p>AI can help you attempt harder work with feedback. It does not replace the experienced engineer who recognizes an ambiguous business rule or an unsafe test. Seniority, age and agent usage are different variables; none is a fair proxy for competence.</p>
+</blockquote>
+<h2 id="i-would-keep-the-partnership.-i-would-tighten-the-contract.">I would keep the partnership. I would tighten the contract.</h2>
+<p>The outcome I care about is less uncertainty and less avoidable rework.</p>
+<p>I started this comparison wanting to explain how Astra and Fable 5 performed in my work. The most useful answer turned out to be less dramatic than a winner: one agent was valuable as an implementation owner, another as a challenger, and both needed boundaries that their confidence could not supply.</p>
+<p>The work improved when I could ask four concrete questions. Which version is current? Who owns the edit? What evidence supports the claim? What do I still need to decide or execute? The arrangement became fragile whenever those answers lived only in conversation.</p>
+<div class="role-grid"><div class="role-card"><strong>ONE OWNER:</strong> Keep editing responsibility explicit for each scoped change.</div><div class="role-card"><strong>FROZEN REVIEW:</strong> Review a named snapshot; a new edit needs a new approval.</div><div class="role-card"><strong>HUMAN PROOF:</strong> Run authorized tests and keep untested boundaries visible.</div></div>
+<p class="figcap">Figure 5. My next iteration of the workflow: a proposed operating discipline, not a claim that every historical step followed it.</p>
+<p>For someone new to DWH, the opportunity is not to pretend to have years of experience. It is to get more deliberate practice: propose a mapping, ask what can go wrong, run an appropriate test and explain the result yourself. The agent should make your reasoning more inspectable, not become a substitute for it.</p>
+<p>For an experienced developer, the question is equally practical: does the assistant remove work you would otherwise do, or add another system you have to supervise? Declining a second agent can be a good engineering decision. Using two can be one too, when the task justifies independent challenge.</p>
+<blockquote>
+<p class="callout__title"><strong>The principle I am taking forward</strong></p>
+<p>Choose the arrangement that reaches a verified result with the least unnecessary human rework. Keep the models accountable to the evidence, and keep yourself accountable for the decision.</p>
+</blockquote>
+<h2 id="what-this-account-rests-on.">What this account rests on.</h2>
+<p>Public technical references plus private project records, with their limits preserved.</p>
+<p><a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener"><strong>[1] OpenAI - GPT-6 Astra</strong></a> Model identity reference; not evidence of historical session configuration.</p>
+<p><a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank" rel="noopener"><strong>[2] Anthropic - Claude Fable 5 and Claude Mythos 5</strong></a> Exact Fable 5 release reference; not a substitution with Fable 5.1.</p>
+<p><a href="https://learn.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql?view=sql-server-ver17" target="_blank" rel="noopener"><strong>[3] Microsoft - TRUNCATE TABLE</strong></a> Schema-modification locking and transactional behavior.</p>
+<p><a href="https://learn.microsoft.com/en-us/sql/t-sql/queries/hints-transact-sql-table?view=sql-server-ver17" target="_blank" rel="noopener"><strong>[4] Microsoft - Table hints</strong></a> NOLOCK does not remove schema-stability locking.</p>
+<h3 id="private-evidence-register">Private evidence register</h3>
+<div class="table-wrap"><table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Label</th>
+<th>Retained record and scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E1</td>
+<td>27 August delivery/handoff log: repeated revisions and human transfer burden.</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>3 September correction and acknowledgement: shared locking error.</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>3 September review sequence: two stale acknowledgements and corrections.</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>3 September diagnostic exchange and scoped policy revision: two conflict checks.</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>3 September timing discussion: 262,933 ms and 37,617 ms executions.</td>
+</tr>
+<tr>
+<td>E6</td>
+<td>8 September retrospective plus two clarification rounds: withdrawn or narrowed claims.</td>
+</tr>
+</tbody>
+</table></div>
+<p>These project records are retained privately, not published as independently accessible datasets. Case selection is retrospective and not exhaustive. Private timestamps are unsuitable for latency measurement. Model labels are author-reported; reasoning settings and per-turn identities were not consistently recorded.</p>
+<p class="note"><em>Written with AI assistance and an evidence-focused review of agent accounts. Examples are anonymized. This is a personal field report, not an employer statement, security certification or controlled benchmark. Public sources checked 8 September 2026.</em></p>
+
+    </article>
+
+    <footer class="article__footer">
+      <p>Thanks for reading. This is a personal field report, not an employer statement or a controlled benchmark. <a href="../index.html#writing">Back to all writing</a> or <a href="../assets/astra-vs-fable-beyond-the-benchmark.pdf">download the PDF</a>.</p>
+    </footer>
+  </div>
+  <script src="../js/theme.js"></script>
+</body>
+</html>

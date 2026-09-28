@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cursor vs Claude Code: Mod ve Özellik Karşılaştırması — Derin Ege Evren</title>
+  <meta name="description" content="59-page Turkish whitepaper comparing Cursor and Claude Code across Agent, Ask, Plan, Debug and Multi-Agent modes, with a comparison matrix, gap analysis, workflows, decision tree and price-performance scorecard.">
+  <meta name="author" content="Derin Ege Evren">
+  <meta name="theme-color" content="#0e7c72">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Cursor vs Claude Code: Mod ve Özellik Karşılaştırması">
+  <meta property="og:description" content="59-page Turkish whitepaper comparing Cursor and Claude Code across Agent, Ask, Plan, Debug and Multi-Agent modes, with a comparison matrix, gap analysis, workflows, decision tree and price-performance scorecard.">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+</head>
+<body>
+  <div class="article-page">
+    <div class="article__top">
+      <a class="back" href="../index.html#writing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m11 18-6-6 6-6"/></svg> Derin Ege Evren</a>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+
+    <header class="article__header">
+      <p class="article__kicker"><span>Whitepaper</span><span class="pill">TR</span><span>June 2026</span><span>59 pages</span></p>
+      <h1 class="article__title">Cursor vs Claude Code: Mod ve Özellik Karşılaştırması</h1>
+      <p class="article__deck">Plan, Ask, Agent, Debug ve Multi-Agent yeteneklerinin kapsamlı teknik analizi.</p>
+      <div class="article__byline"><span>By <strong>Derin Ege Evren</strong></span><span class="sep">·</span><span>Sürüm 1.0</span><span class="sep">·</span><a href="../assets/Cursor_vs_Claude_Code_Mod_Karsilastirmasi_v1.0.pdf" target="_blank" rel="noopener">Full PDF</a></div>
+    </header>
+
+    <article class="article">
+<div class="report-hero">
+  <div>
+    <p>A 59-page Turkish whitepaper comparing how <strong>Cursor</strong> and <strong>Claude Code</strong> implement the five core interaction modes of an AI coding agent: Agent, Ask, Plan, Debug and Multi-Agent. It works from the official documentation of both products, maps each mode to its closest counterpart, scores the match, and ends with a decision tree, hybrid-usage scenarios and a price-performance scorecard.</p>
+    <p class="note">Written in June 2026 and reflecting both products as documented then. Read the executive summary below or open the full PDF.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="../assets/Cursor_vs_Claude_Code_Mod_Karsilastirmasi_v1.0.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg> Open the PDF</a>
+      <a class="btn btn--ghost" href="../assets/Cursor_vs_Claude_Code_Mod_Karsilastirmasi_v1.0.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> Download (15 MB)</a>
+    </div>
+  </div>
+  <aside class="report-card" aria-label="Report facts">
+    <dl>
+      <dt>Format</dt><dd>Whitepaper, PDF</dd>
+      <dt>Length</dt><dd>59 pages, 9 chapters</dd>
+      <dt>Language</dt><dd>Turkish</dd>
+      <dt>Version</dt><dd>1.0 · June 2026</dd>
+      <dt>Basis</dt><dd>Official product documentation</dd>
+    </dl>
+  </aside>
+</div>
+
+<h2 id="ozet">Yönetici özeti <span class="pill" style="font-size:.7rem;vertical-align:middle">TR</span></h2>
+<p>Bu rapor, <strong>Cursor IDE</strong> ile <strong>Claude Code</strong> arasındaki beş temel etkileşim paradigmasını—Agent, Ask, Plan, Debug ve Multi-Agent—resmi dokümantasyon temelinde karşılaştırmaktadır. Her iki ürün de yapay zeka destekli kodlama ajanları sunmakla birlikte, mod kavramlarını farklı mimari katmanlarda uygular.</p>
+<div class="keyfinding">
+<p>En yakın birebir eşleşme <strong>Plan Mode</strong> alanındadır: her iki ürün de değişiklik yapmadan önce read-only araştırma ve onaylanabilir plan üretir. En büyük boşluk <strong>Debug Mode</strong> alanındadır: Cursor’ın runtime instrumentation döngüsünün Claude Code’da doğrudan karşılığı yoktur.</p>
+</div>
+<h3>Mod Bazında Özet</h3>
+<div class="table-wrap"><table>
+<caption>Beş mod için tek cümlelik karşılaştırma</caption>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Mod</strong></th>
+<th style="text-align: left;"><strong>Cursor</strong></th>
+<th style="text-align: left;"><strong>Claude Code</strong></th>
+<th style="text-align: center;"><strong>Eşleşme</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Agent</td>
+<td style="text-align: left;">Birincil uygulama modu; dosya düzenleme, terminal, subagent delegasyonu</td>
+<td style="text-align: left;">Ana oturum; <code>default</code>, <code>acceptEdits</code> veya <code>auto</code> izin modlarıyla çalışır</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Ask</td>
+<td style="text-align: left;">Read-only birinci sınıf mod; ayrı context penceresi</td>
+<td style="text-align: left;">Ayrı mod yok; <code>default</code> + prompt kısıtı veya Explore subagent</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Plan</td>
+<td style="text-align: left;">Soru <span class="math inline">→</span> araştırma <span class="math inline">→</span> plan <span class="math inline">→</span> Build onayı</td>
+<td style="text-align: left;"><code>plan</code> izin modu + <code>/plan</code> + Plan subagent</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Debug</td>
+<td style="text-align: left;">Hipotez <span class="math inline">→</span> instrumentation <span class="math inline">→</span> repro <span class="math inline">→</span> fix</td>
+<td style="text-align: left;"><code>/debug</code> yapılandırma teşhisi; runtime debug döngüsü yok</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Multi-Agent</td>
+<td style="text-align: left;">Worktree + best-of-N model karşılaştırma</td>
+<td style="text-align: left;">Subagent + agent view + deneysel agent teams + <code>/batch</code></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></div>
+<h3>Stratejik Çıkarımlar</h3>
+<ol>
+<li><p><strong>Planlama iş akışları</strong> her iki platformda da olgun ve üretim ortamında kullanılabilir düzeydedir.</p></li>
+<li><p><strong>Karmaşık hata ayıklama</strong> için Cursor Debug Mode belirgin bir avantaj sunar; Claude Code kullanıcıları manuel runtime veri sağlamalı veya özel subagent tanımlamalıdır.</p></li>
+<li><p><strong>Çoklu ajan</strong> her iki tarafta da desteklenir ancak paradigma farklıdır: Cursor model karşılaştırmasına, Claude koordinasyon katmanlarına odaklanır.</p></li>
+<li><p><strong>Terminoloji tuzağı</strong> en sık karışan noktadır: Claude’daki <code>/debug</code> komutu Cursor Debug Mode ile aynı değildir.</p></li>
+<li><p><strong>$20 Pro seviyesinde</strong> fiyatlar eşittir; ekip ölçeğinde Cursor maliyet avantajı, CI/CD’de Claude değer avantajı görülür (Bölüm <a href="#ch:pricing" data-reference-type="ref" data-reference="ch:pricing">[ch:pricing]</a>).</p></li>
+</ol>
+<p>Bu rapor, ekip liderleri ve kıdemli geliştiricilerin doğru aracı doğru görev için seçmesine yardımcı olacak karar matrisleri, iş akışı diyagramları ve boşluk analizi sunmaktadır.</p>
+
+
+<h2 id="icindekiler">İçindekiler</h2>
+<div class="toc"><ol><li><span>Yönetici Özeti</span></li><li><span>Yönetici Görsel Rehberi</span></li><li><span>Hızlı Görsel Referans</span></li><li><span><span class="num">1</span>Metodoloji ve Kapsam</span><ol><li>Araştırma Yaklaşımı</li><li>Sürüm Referansları</li><li>Terminoloji Ayrımı</li><li>Eşleşme Düzeyi Tanımları</li><li>Kaynaklar</li></ol></li><li><span><span class="num">2</span>Cursor Modları</span><ol><li>Agent Mode</li><li>Ask Mode</li><li>Plan Mode</li><li>Debug Mode</li><li>Multi-Agent ve Paralel Çalışma</li></ol></li><li><span><span class="num">3</span>Claude Code Karşılıkları</span><ol><li>İzin Modları ve Agent Davranışı</li><li>Plan Mode (İzin Modu)</li><li>Ask Mode Eşdeğeri</li><li>Debug Mode Eşdeğeri</li><li>Multi-Agent ve Paralel Çalışma</li></ol></li><li><span><span class="num">4</span>Karşılaştırma Matrisi</span><ol><li>Genel Özellik Matrisi</li><li>Mod Bazında Detaylı Karşılaştırma</li></ol></li><li><span><span class="num">5</span>Boşluk Analizi</span><ol><li>Claude Code&#x27;da Eksik Olan Özellikler</li><li>Cursor&#x27;da Eksik Olan Özellikler</li><li>Her İki Tarafta da Eksik</li></ol></li><li><span><span class="num">6</span>Pratik İş Akışları</span><ol><li>Özellik Geliştirme</li><li>Karmaşık Hata Ayıklama</li><li>Paralel Geliştirme</li><li>Onboarding</li><li>CI/CD Entegrasyonu</li></ol></li><li><span><span class="num">7</span>Öneriler ve Karar Ağacı</span><ol><li>Platform Seçim Karar Ağacı</li><li>Mod Seçim Rehberi (Cursor)</li><li>Mod Seçim Rehberi (Claude Code)</li><li>Hibrit Kullanım Senaryoları</li><li>Risk ve Dikkat Noktaları</li><li>Sonuç</li></ol></li><li><span><span class="num">8</span>Fiyat-Performans Karşılaştırması</span><ol><li>Fiyatlandırma Modelleri</li><li>Plan Bazında Fiyat Tabloları</li><li>Özellik Başına Değer Analizi</li><li>Toplam Sahip Olma Maliyeti Senaryoları</li><li>Gizli ve Ek Maliyetler</li><li>Fiyat-Performans Skor Kartı</li><li>Bütçe Karar Çerçevesi</li></ol></li><li><span><span class="num">9</span>Ekler</span></li></ol></div>
+
+    </article>
+
+    <footer class="article__footer">
+      <p>Reflects Cursor and Claude Code as documented in June 2026; both products have changed since. <a href="../index.html#writing">Back to all writing</a>.</p>
+    </footer>
+  </div>
+  <script src="../js/theme.js"></script>
+</body>
+</html>
